@@ -114,9 +114,4 @@ public class ListItemSpec {
         componentContext.startActivity(intent);
 
     }
-
-    @OnEvent(PTRRefreshEvent.class)
-    static void onPTRRefresh(ComponentContext componentContext) {
-        Timber.d("イベントが発行されたよ！！");
-    }
 }

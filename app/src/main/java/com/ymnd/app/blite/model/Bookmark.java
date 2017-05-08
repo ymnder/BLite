@@ -43,6 +43,8 @@ public class Bookmark {
     @SerializedName(value = "is_pr")
     private int isPr;
 
+    private boolean isFooter;
+
     public static class ImageUrl {
         private int width;
         private int height;
@@ -85,5 +87,13 @@ public class Bookmark {
     // for debug
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public boolean isFooter() {
+        return isFooter;
+    }
+
+    public void setFooter(boolean footer) {
+        isFooter = footer;
     }
 }

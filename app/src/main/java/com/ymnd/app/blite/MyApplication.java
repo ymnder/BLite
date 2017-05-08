@@ -7,6 +7,9 @@ import com.facebook.litho.config.ComponentsConfiguration;
 import com.facebook.soloader.SoLoader;
 import com.facebook.stetho.Stetho;
 import com.jakewharton.threetenabp.AndroidThreeTen;
+import com.ymnd.app.blite.model.Bookmark;
+
+import java.util.List;
 
 import timber.log.Timber;
 
@@ -15,6 +18,9 @@ import timber.log.Timber;
  */
 
 public class MyApplication extends Application {
+
+    private List<Bookmark> bookmarks;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,5 +34,13 @@ public class MyApplication extends Application {
         );
         ComponentsConfiguration.debugHighlightMountBounds = true;
         ComponentsConfiguration.debugHighlightInteractiveBounds = true;
+    }
+
+    public List<Bookmark> getBookmarks() {
+        return bookmarks;
+    }
+
+    public void setBookmarks(List<Bookmark> bookmarks) {
+        this.bookmarks = bookmarks;
     }
 }
