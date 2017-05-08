@@ -23,13 +23,10 @@ import timber.log.Timber;
 public class ArticleApi {
 
     private final String BASE_URL = "http://b.hatena.ne.jp/api/ipad.hotentry.json";
-    public void getRss(final boolean loadMore,
-                               final OnRefreshListener listener) {
-        getRss(loadMore, false, listener);
+    public void getRss(final OnRefreshListener listener) {
+        getRss(0, listener);
     }
-    public void getRss(final boolean loadMore,
-                               final boolean isRefresh,
-                               final OnRefreshListener listener) {
+    public void getRss(final int itemCounts, final OnRefreshListener listener) {
 
         new AsyncTask<Void, Void, List<Bookmark>>() {
 
@@ -39,6 +36,10 @@ public class ArticleApi {
                 Request.Builder builder = new Request.Builder();
                 Uri.Builder uri = Uri.parse(BASE_URL).buildUpon()
                         .appendQueryParameter("limit", "10");
+
+                if (itemCounts != 0) {
+                    uri.appendQueryParameter("of", Integer.toString(itemCounts - 1));
+                }
 
                 Request request = builder
                         .url(uri.toString())

@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
     private Runnable timer = new Runnable() {
         @Override
         public void run() {
-            new ArticleApi().getRss(false, new ArticleApi.OnRefreshListener() {
+            new ArticleApi().getRss(new ArticleApi.OnRefreshListener() {
                 @Override
                 public void onRefresh(List<Bookmark> bookmarks) {
                     MyApplication ap = (MyApplication)getApplication();
