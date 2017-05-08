@@ -83,6 +83,7 @@ public class ListItemSpec {
                         Image.create(componentContext)
                         .drawableRes(R.drawable.ic_share_color)
                         .withLayout()
+                        .alignSelf(YogaAlign.CENTER)
                         .marginRes(YogaEdge.LEFT, R.dimen.small_margin)
                 )
                 .justifyContent(YogaJustify.SPACE_BETWEEN)
