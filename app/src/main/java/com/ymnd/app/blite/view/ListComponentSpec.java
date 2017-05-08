@@ -21,6 +21,7 @@ import com.facebook.litho.widget.RecyclerBinder;
 import com.facebook.litho.widget.RecyclerBinderUpdateCallback;
 import com.facebook.litho.widget.RecyclerEventsController;
 import com.google.gson.Gson;
+import com.ymnd.app.blite.ArticleApi;
 import com.ymnd.app.blite.DiffCallback;
 import com.ymnd.app.blite.MyApplication;
 import com.ymnd.app.blite.SampleActivity;
@@ -186,71 +187,45 @@ public class ListComponentSpec {
                              @Param final RecyclerBinder recyclerBinder,
                              @Param final RecyclerEventsController controller){
 
-            new AsyncTask<Void, Void, List<Bookmark>>() {
+        new ArticleApi().getRss(false, new ArticleApi.OnRefreshListener() {
+            @Override
+            public void onRefresh(List<Bookmark> bookmarks) {
+                //this dataset is for debug so must fixed
+                List<Bookmark> oldData = ((MyApplication) c.getApplicationContext()).getBookmarks();
 
-                @Override
-                protected List<Bookmark> doInBackground(Void... params) {
-                    OkHttpClient client = new OkHttpClient();
-                    Request.Builder builder = new Request.Builder();
-                    Uri.Builder uri = Uri.parse(BASE_URL).buildUpon()
-                            .appendQueryParameter("limit", "10");
+                //fix this
+                MyApplication ap = (MyApplication) c.getApplicationContext();
+                Bookmark footer = new Bookmark();
+                footer.setFooter(true);
+                bookmarks.add(footer);
+                ap.setBookmarks(bookmarks);
 
-                    Request request = builder
-                            .url(uri.toString())
-                            .build();
-                    List<Bookmark> bookmarkList = new ArrayList<>();
-                    try {
-                        Response response = client.newCall(request).execute();
-                        Collections.addAll(
-                                bookmarkList,
-                                new Gson().fromJson(response.body().charStream(), Bookmark[].class)
-                        );
-                    } catch (IOException e) {
-                        Timber.e(e, e.getMessage());
+                final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(DiffCallback.newInstance(oldData, bookmarks));
+                Timber.d("old %s, new %s", oldData.size(), bookmarks.size());
+                final RecyclerBinderUpdateCallback.ComponentRenderer<Bookmark> mComponentRenderer = new RecyclerBinderUpdateCallback.ComponentRenderer<Bookmark>() {
+                    @Override
+                    public ComponentInfo render(Bookmark bookmark, int idx) {
+                        return ComponentInfo.create().component(
+                                bookmark.isFooter() ?
+                                        FooterListItem.create(c).build() :
+                                        ListItem.create(c).bookmark(bookmark).build()
+                        ).build();
                     }
-                    return bookmarkList;
-                }
+                };
 
-                @Override
-                protected void onPostExecute(List<Bookmark> bookmarks) {
-                    super.onPostExecute(bookmarks);
-                    //this dataset is for debug so must fixed
-                    List<Bookmark> oldData = ((MyApplication) c.getApplicationContext()).getBookmarks();
+                final RecyclerBinderUpdateCallback callback = RecyclerBinderUpdateCallback.acquire(
+                        oldData.size(),
+                        bookmarks,
+                        mComponentRenderer,
+                        recyclerBinder
+                );
 
-                    //fix this
-                    MyApplication ap = (MyApplication) c.getApplicationContext();
-                    Bookmark footer = new Bookmark();
-                    footer.setFooter(true);
-                    bookmarks.add(footer);
-                    ap.setBookmarks(bookmarks);
-
-                    final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(DiffCallback.newInstance(oldData, bookmarks));
-                    Timber.d("old %s, new %s", oldData.size(), bookmarks.size());
-                    final RecyclerBinderUpdateCallback.ComponentRenderer<Bookmark> mComponentRenderer = new RecyclerBinderUpdateCallback.ComponentRenderer<Bookmark>() {
-                        @Override
-                        public ComponentInfo render(Bookmark bookmark, int idx) {
-                            return ComponentInfo.create().component(
-                                    bookmark.isFooter() ?
-                                            FooterListItem.create(c).build() :
-                                            ListItem.create(c).bookmark(bookmark).build()
-                            ).build();
-                        }
-                    };
-
-                    final RecyclerBinderUpdateCallback callback = RecyclerBinderUpdateCallback.acquire(
-                            oldData.size(),
-                            bookmarks,
-                            mComponentRenderer,
-                            recyclerBinder
-                    );
-
-                    diffResult.dispatchUpdatesTo(callback);
-                    callback.applyChangeset();
-                    RecyclerBinderUpdateCallback.release(callback);
-                    controller.clearRefreshing();
-                }
-
-            }.execute();
+                diffResult.dispatchUpdatesTo(callback);
+                callback.applyChangeset();
+                RecyclerBinderUpdateCallback.release(callback);
+                controller.clearRefreshing();
+            }
+        });
     }
 
 }
