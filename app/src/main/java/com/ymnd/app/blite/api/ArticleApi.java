@@ -1,4 +1,4 @@
-package com.ymnd.app.blite;
+package com.ymnd.app.blite.api;
 
 import android.net.Uri;
 import android.os.AsyncTask;

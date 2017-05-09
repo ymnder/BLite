@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
 import com.ymnd.app.blite.view.ListComponent;
@@ -13,7 +12,7 @@ import com.ymnd.app.blite.view.ListComponent;
  * Created by yamazaki on 2017/05/07.
  */
 
-public class SampleActivity extends AppCompatActivity {
+public class HeadlineListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class SampleActivity extends AppCompatActivity {
         setContentView(
                 LithoView.create(
                         this,
-                        ListComponent.create(new ComponentContext(this))
+                        ListComponent.create(c)
                                 .build()));
     }
 }

@@ -4,9 +4,6 @@ import android.net.Uri;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.net.URI;
-import java.net.URL;
-
 /**
  * Created by yamazaki on 2017/04/25.
  */

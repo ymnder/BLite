@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.LithoView;
+import com.ymnd.app.blite.api.ArticleApi;
 import com.ymnd.app.blite.model.Bookmark;
 import com.ymnd.app.blite.view.SplashComponent;
 
@@ -44,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
                     Bookmark footer = Bookmark.createFooter();
                     bookmarks.add(footer);
                     ap.setBookmarks(bookmarks);
-                    startActivity(new Intent(getApplicationContext(), SampleActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HeadlineListActivity.class));
                     finish();
                 }
             });
