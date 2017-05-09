@@ -21,7 +21,7 @@ public class SampleActivity extends AppCompatActivity {
         setContentView(
                 LithoView.create(
                         this,
-                        ListComponent.create(new ComponentContext(this))
+                        ListComponent.create(c)
                                 .build()));
     }
 }

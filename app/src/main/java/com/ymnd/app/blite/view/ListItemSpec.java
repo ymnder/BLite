@@ -32,29 +32,29 @@ import com.ymnd.app.blite.model.Bookmark;
 @LayoutSpec
 public class ListItemSpec {
     @OnCreateLayout
-    static ComponentLayout onCreateLayout(ComponentContext componentContext,
+    static ComponentLayout onCreateLayout(ComponentContext c,
                                           @Prop Bookmark bookmark
     ) {
         ComponentLayout.ContainerBuilder builder =
-            Row.create(componentContext)
+            Row.create(c)
                 .paddingDip(YogaEdge.ALL, 16)
                 .backgroundColor(Color.WHITE)
                 .child(
-                        Column.create(componentContext)
+                        Column.create(c)
                         .child(
-                                Text.create(componentContext)
+                                Text.create(c)
                                         .text(bookmark.getTitle())
                                         .textColorRes(R.color.primaryText)
                                         .textSizeRes(R.dimen.sub_heading)
                                         .spacingMultiplier(1.25f)
                                         .ellipsize(TextUtils.TruncateAt.END)
                                         .maxLines(2)
-                                        .typeface(Typeface.createFromAsset(componentContext.getAssets(), "font/YakuHanJP-Regular.ttf"))
+                                        .typeface(Typeface.createFromAsset(c.getAssets(), "font/YakuHanJP-Regular.ttf"))
 
                         ).child(
-                                Row.create(componentContext)
+                                Row.create(c)
                                     .child(
-                                            Text.create(componentContext)
+                                            Text.create(c)
                                                     .text(bookmark.getBookmarkCount())
                                                     .textColorRes(R.color.colorAccent)
                                                     .textSizeRes(R.dimen.body)
@@ -62,47 +62,47 @@ public class ListItemSpec {
                                                     .marginRes(YogaEdge.RIGHT, R.dimen.small_margin)
                                     )
                                     .child(
-                                            Text.create(componentContext)
+                                            Text.create(c)
                                                     .text(bookmark.getHost())
                                                     .textColorRes(R.color.secondaryText)
                                                     .textSizeRes(R.dimen.body)
                         ))
-                        .clickHandler(ListItem.onClick(componentContext, bookmark.getUrl()))
+                        .clickHandler(ListItem.onClick(c, bookmark.getUrl()))
                 )
                 .child(
-                        Image.create(componentContext)
+                        Image.create(c)
                         .drawableRes(R.drawable.ic_share_color)
                         .withLayout()
                         .alignSelf(YogaAlign.CENTER)
                         .marginRes(YogaEdge.LEFT, R.dimen.small_margin)
                 )
                 .justifyContent(YogaJustify.SPACE_BETWEEN)
-                .clickHandler(ListItem.onClickIcon(componentContext, bookmark.getUrl()));
+                .clickHandler(ListItem.onClickIcon(c, bookmark.getUrl()));
 
         return builder.build();
     }
 
     @OnEvent(ClickEvent.class)
-    static void onClick(ComponentContext componentContext,
+    static void onClick(ComponentContext c,
                         @Param String url){
         if (url == null) return;
 
         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
         CustomTabsIntent customTabsIntent = builder
                 .addDefaultShareMenuItem()
-                .setToolbarColor(ContextCompat.getColor(componentContext, R.color.colorPrimary))
+                .setToolbarColor(ContextCompat.getColor(c, R.color.colorPrimary))
                 .build();
-        customTabsIntent.launchUrl(componentContext, Uri.parse(url));
+        customTabsIntent.launchUrl(c, Uri.parse(url));
     }
 
     @OnEvent(ClickEvent.class)
-    static void onClickIcon(ComponentContext componentContext,
+    static void onClickIcon(ComponentContext c,
                             @Param String url) {
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, url);
-        componentContext.startActivity(intent);
+        c.startActivity(intent);
 
     }
 }
