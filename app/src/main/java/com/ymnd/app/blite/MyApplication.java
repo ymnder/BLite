@@ -6,7 +6,6 @@ import com.facebook.litho.LithoWebKitInspector;
 import com.facebook.litho.config.ComponentsConfiguration;
 import com.facebook.soloader.SoLoader;
 import com.facebook.stetho.Stetho;
-import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.ymnd.app.blite.model.Bookmark;
 
 import java.util.List;
@@ -25,7 +24,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, false);
-        AndroidThreeTen.init(this);
         Timber.plant(new Timber.DebugTree());
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
