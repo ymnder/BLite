@@ -21,7 +21,6 @@ import com.ymnd.app.blite.ArticleApi;
 import com.ymnd.app.blite.DiffCallback;
 import com.ymnd.app.blite.MyApplication;
 import com.ymnd.app.blite.model.Bookmark;
-import com.ymnd.app.blite.model.FooterListItem;
 
 import java.util.ArrayList;
 import java.util.List;
