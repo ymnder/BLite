@@ -41,9 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                 @Override
                 public void onRefresh(List<Bookmark> bookmarks) {
                     MyApplication ap = (MyApplication)getApplication();
-                    //fix this
-                    Bookmark footer = new Bookmark();
-                    footer.setFooter(true);
+                    Bookmark footer = Bookmark.createFooter();
                     bookmarks.add(footer);
                     ap.setBookmarks(bookmarks);
                     startActivity(new Intent(getApplicationContext(), SampleActivity.class));
