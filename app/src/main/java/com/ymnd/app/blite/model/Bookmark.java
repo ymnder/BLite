@@ -51,6 +51,13 @@ public class Bookmark {
         private String url;
     }
 
+    public static Bookmark createFooter() {
+        Bookmark bookmark = new Bookmark();
+        bookmark.title = "footer";
+        bookmark.isFooter = true;
+        return bookmark;
+    }
+
     public String getDateTime() {
         return dateTime;
     }
