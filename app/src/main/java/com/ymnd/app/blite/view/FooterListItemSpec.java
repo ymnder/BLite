@@ -1,4 +1,4 @@
-package com.ymnd.app.blite.model;
+package com.ymnd.app.blite.view;
 
 import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
@@ -7,7 +7,6 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.widget.Progress;
 import com.facebook.yoga.YogaAlign;
-import com.facebook.yoga.YogaJustify;
 import com.ymnd.app.blite.R;
 
 /**
