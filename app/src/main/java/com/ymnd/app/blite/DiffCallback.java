@@ -36,11 +36,11 @@ public class DiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return false;
+        return mCurrentData.get(oldItemPosition).getTitle().equals(mNewData.get(newItemPosition).getTitle());
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return false;
+        return mCurrentData.get(oldItemPosition).equals(mNewData.get(newItemPosition));
     }
 }
