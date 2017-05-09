@@ -107,29 +107,6 @@ public class ListComponentSpec {
                                     diffResult.dispatchUpdatesTo(callback);
                                     callback.applyChangeset();
                                     RecyclerBinderUpdateCallback.release(callback);
-
-//                MyApplication ap = (MyApplication) c.getApplicationContext();
-//                List<Bookmark> currentData = ap.getBookmarks();
-//
-//                //footer部分を削除
-//                currentData.remove(recyclerBinder.getItemCount() - 1);
-//                currentData.addAll(bookmarks);
-//                Bookmark footer = new Bookmark();
-//                footer.setFooter(true);
-//                currentData.add(footer);
-//                ap.setBookmarks(currentData);
-//                recyclerBinder.removeItemAt(recyclerBinder.getItemCount() - 1);
-//
-//                for (Bookmark bookmark: bookmarks) {
-//                    ComponentInfo.Builder componentInfoBuilder = ComponentInfo.create();
-//                    componentInfoBuilder.component(
-//                            bookmark.isFooter() ?
-//                                    FooterListItem.create(c).build() :
-//                                    ListItem.create(c).bookmark(bookmark).build()
-//                    );
-//                    recyclerBinder.insertItemAt(recyclerBinder.getItemCount(), componentInfoBuilder.build());
-//                }
-
                                 }
                             });
                         }
@@ -151,7 +128,6 @@ public class ListComponentSpec {
                 //this dataset is for debug so must fixed
                 List<Bookmark> oldData = ((MyApplication) c.getApplicationContext()).getBookmarks();
 
-                //fix this
                 MyApplication ap = (MyApplication) c.getApplicationContext();
                 Bookmark footer = Bookmark.createFooter();
                 bookmarks.add(footer);
