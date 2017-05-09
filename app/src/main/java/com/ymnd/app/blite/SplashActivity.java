@@ -45,7 +45,7 @@ public class SplashActivity extends AppCompatActivity {
                     Bookmark footer = Bookmark.createFooter();
                     bookmarks.add(footer);
                     ap.setBookmarks(bookmarks);
-                    startActivity(new Intent(getApplicationContext(), SampleActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HeadlineListActivity.class));
                     finish();
                 }
             });

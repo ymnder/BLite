@@ -12,7 +12,7 @@ import com.ymnd.app.blite.view.ListComponent;
  * Created by yamazaki on 2017/05/07.
  */
 
-public class SampleActivity extends AppCompatActivity {
+public class HeadlineListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
