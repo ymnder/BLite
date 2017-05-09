@@ -1,9 +1,6 @@
 package com.ymnd.app.blite.view;
 
-import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -16,25 +13,18 @@ import com.facebook.litho.Column;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.Row;
-import com.facebook.litho.annotations.Event;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.OnEvent;
 import com.facebook.litho.annotations.Param;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.widget.Image;
-import com.facebook.litho.widget.PTRRefreshEvent;
 import com.facebook.litho.widget.Text;
-import com.facebook.litho.widget.VerticalGravity;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaEdge;
 import com.facebook.yoga.YogaJustify;
 import com.ymnd.app.blite.R;
 import com.ymnd.app.blite.model.Bookmark;
-
-import timber.log.Timber;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by yamazaki on 2017/04/23.
