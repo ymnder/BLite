@@ -77,8 +77,7 @@ public class ListComponentSpec {
 
                                     //fix this
                                     MyApplication ap = (MyApplication) c.getApplicationContext();
-                                    Bookmark footer = new Bookmark();
-                                    footer.setFooter(true);
+                                    Bookmark footer = Bookmark.createFooter();
                                     bookmarks.add(footer);
                                     newData.addAll(bookmarks);
 
@@ -154,8 +153,7 @@ public class ListComponentSpec {
 
                 //fix this
                 MyApplication ap = (MyApplication) c.getApplicationContext();
-                Bookmark footer = new Bookmark();
-                footer.setFooter(true);
+                Bookmark footer = Bookmark.createFooter();
                 bookmarks.add(footer);
                 ap.setBookmarks(bookmarks);
 
