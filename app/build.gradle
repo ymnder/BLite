@@ -22,21 +22,11 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    //rx
-    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-
-    //JSR-310
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
-
     //gson
     compile 'com.google.code.gson:gson:2.8.0'
 
     //okhttp
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
-
-    //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
 
     //Timber
     compile 'com.jakewharton.timber:timber:4.5.1'
@@ -45,21 +35,19 @@ dependencies {
     compile 'com.facebook.litho:litho-core:0.2.0'
     compile 'com.facebook.litho:litho-widget:0.2.0'
     compile 'com.facebook.litho:litho-stetho:0.2.0'
-    //if you need litho stetho change provided to compile
-    //https://github.com/facebook/litho/issues/159
-    //will solve it　0.2.1
-    compile 'com.facebook.litho:litho-annotations:0.2.0'
 
+    //if you need litho stetho change provided to compile, and solve it　0.2.1
+    //https://github.com/facebook/litho/issues/159
+    compile 'com.facebook.litho:litho-annotations:0.2.0'
     annotationProcessor 'com.facebook.litho:litho-processor:0.2.0'
 
-    // SoLoader
+    // SoLoader for Yoga
     compile 'com.facebook.soloader:soloader:0.2.0'
 
     compile 'com.android.support:customtabs:25.3.1'
 
     //stetho
     compile 'com.facebook.stetho:stetho:1.5.0'
-
 
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
